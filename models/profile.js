@@ -19,10 +19,6 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        pronouns: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         age: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -30,6 +26,10 @@ profile.init(
         gender: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        pronoun: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         location: {
             type: DataTypes.STRING,
