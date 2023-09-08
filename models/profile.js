@@ -19,6 +19,10 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        pronouns: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         age: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -27,15 +31,15 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        green_flag: {
+        green_flags: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        yellow_flag: {
+        yellow_flags: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        red_flag: {
+        red_flags: {
             type: DataTypes.STRING,
             allowNull: false,
         },
