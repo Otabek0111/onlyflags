@@ -2,9 +2,10 @@
 
 const router = require('express').Router();
 const { profile } = require('../models'); // imports profile model
+const isAuthenticated = require('../utils/auth'); // Import the middleware
 
 // retrive & display profile editing form
-router.get('/edit', async (req, res) => {
+router.get('/editprofile', async (req, res) => {
     try {
         //MAKE SURE USER IS AUTHENTICATED
         const user = req.user;
@@ -16,7 +17,7 @@ router.get('/edit', async (req, res) => {
 });
 
 //handle form submission & update profile
-router.post('/edit', async (req, res) => {
+router.post('/editprofile', async (req, res) => {
     try {
         const user = req.user;
 //ADD GENDER EVENTUALLY

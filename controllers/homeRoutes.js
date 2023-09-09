@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../models');
+const isAuthenticated = require('../utils/auth'); // Import the middleware
 
-router.get('/', async (req, res) => {
+router.get('/home', async (req, res) => {
   try {
     // Get all users, sorted by name
     const userData = await User.findAll({
