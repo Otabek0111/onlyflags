@@ -1,7 +1,6 @@
 //users edit profile
 
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const { profile } = require('../models'); // imports profile model
 
 // retrive & display profile editing form
@@ -40,7 +39,7 @@ router.post('/edit', async (req, res) => {
         //redirect to profile page after editing
         res.redirect('profile')
     } catch (err) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json(err);
     }
 });
 
