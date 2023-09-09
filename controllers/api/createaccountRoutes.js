@@ -30,7 +30,7 @@ router.post('/createaccount', async (req, res) => {
             req.sesion.user_id = newUser.id;
             req.session.logged_in = true;
 
-            res.status(201).json({ user: newUser, message: 'Registration successful!'})
+            res.status(201).json({ user: newUser, message: 'Registration successful!', redirectTo: '/createprofileRoutes'})
         });
     } catch (err) {
         res.status(500).json(err);
