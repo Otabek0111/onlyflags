@@ -1,4 +1,5 @@
 //route for new users to create their account
+//part of user authentication
 
 const router = require('express').Router();
 const { User } = require('../../models');

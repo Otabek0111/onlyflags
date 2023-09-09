@@ -1,1 +1,0 @@
-// middleware function to check to see if the user is authenticated
