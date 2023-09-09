@@ -8,6 +8,6 @@ const existingaccountRoutes = require('./existingaccountRoutes');
 router.use('/createaccount', createaccountRoutes);
 router.use('/createprofile', createprofileRoutes);
 router.use('/editprofile', editprofileRoutes);
-router.use('/account', existingaccountRoutes);
+router.use('/existingaccount', existingaccountRoutes);
 
 module.exports = router;
