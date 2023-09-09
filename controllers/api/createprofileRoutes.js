@@ -37,6 +37,9 @@ router.post('/create', async (req, res) => {
             yellow_flags,
             red_flags,
         });
+        //associate profile with user - is it necessary?
+        const user = req.user;
+        await newProfile.setUser(user);
 
         //redirect to user's profile page (or another page, can change later)
         res.redirect('/profile');
