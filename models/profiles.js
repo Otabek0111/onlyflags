@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class profile extends Model { }
@@ -19,10 +19,6 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        pronouns: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         age: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -31,19 +27,23 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        pronoun: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         location: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        green_flags: {
+        green_flag: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        yellow_flags: {
+        yellow_flag: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        red_flags: {
+        red_flag: {
             type: DataTypes.STRING,
             allowNull: false,
         },

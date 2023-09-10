@@ -1,10 +1,10 @@
 
 
-const profile = require('./profile');
-const user = require('./user');
+const profile = require('./profiles');
+const account = require('./accounts');
 
 profile.belongsTo(user, {
-  foreignKey: 'profile_id',
+  foreignKey: 'account_id',
 });
 
 module.exports = {
