@@ -4,11 +4,8 @@ const router = require('express').Router();
 const { profile } = require('../models'); // imports profile model
 const isAuthenticated = require('../utils/auth'); // Import the middleware
 
-// retrive & display profile editing form<<<<<<< authentication
 router.get('/editprofile', ensureAuthenticated, async (req, res) => {
-  
-router.get('/editprofile', async (req, res) => {
-  try {
+    try {
         if (!req.isAuthenticated()) {
             return res.status(401).json({ error: 'Unauthorized' });
 
