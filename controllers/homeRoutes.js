@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize user data so templates can read it
-    const users = userData.map((project) => project.get({ plain: true }));
+    const users = userData.map((user) => user.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
     res.render('homepage', { users });

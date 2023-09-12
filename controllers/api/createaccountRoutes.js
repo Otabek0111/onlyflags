@@ -2,16 +2,14 @@
 
 const router = require('express').Router();
 const { User } = require('../../models');
-
 const bcrypt = require('bcrypt');
 
 router.post('/createaccount', async (req, res) => {
     try {
-        const existingUser = await User.findOne({ where: {email: req.body.email } });
+        const existingUser = await User.findOne({ where: { email: req.body.email } });
 
         if (existingUser) {
-            res.status(400).json({ message: 'Email is already in use' });
-            return;
+            return res.status(400).json({ message: 'Email is already in use' });
         }
 
         //generate a salt and hash user's password
@@ -27,12 +25,20 @@ router.post('/createaccount', async (req, res) => {
 
         //log user in automatically after registration
         req.session.save(() => {
-            req.sesion.user_id = newUser.id;
+            req.session.user_id = newUser.id;
             req.session.logged_in = true;
 
-            res.status(201).json({ user: newUser, message: 'Registration successful!', redirectTo: '/createprofileRoutes'})
+            //make sure redirectTo is the actual path
+            res.status(201).json({
+                user: newUser,
+                message: 'Registration successful!',
+                redirectTo: '/createprofileRoutes',
+            });
         });
     } catch (err) {
+        console.error(err);
         res.status(500).json(err);
     }
 });
+
+module.exports = router;
