@@ -13,7 +13,7 @@ const sequelize = process.env.JAWSDB_URL
     });
 
 sequelize
-    .authenticated()
+    .authenticate()
     .then(() => {
       console.log('Database connection established')
     })
