@@ -12,12 +12,6 @@ account.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    firstName: { 
-      type: DataTypes.STRING,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-    },
     email: {
       type: DataTypes.STRING,
     },

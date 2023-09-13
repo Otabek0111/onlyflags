@@ -11,6 +11,14 @@ profile.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        accountID: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'account',
+                key: 'id',
+            },
+        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
