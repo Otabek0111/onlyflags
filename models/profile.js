@@ -31,6 +31,14 @@ profile.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        gender: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        pronouns: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
         location: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -47,7 +55,10 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     },
     {
         sequelize,
