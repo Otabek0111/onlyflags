@@ -11,6 +11,14 @@ profile.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        accountID: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'account',
+                key: 'id',
+            },
+        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -24,11 +32,11 @@ profile.init(
             allowNull: false,
         },
         gender: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        pronoun: {
-            type: DataTypes.STRING,
+        pronouns: {
+            type: DataTypes.INTEGER,
             allowNull: true,
         },
         location: {
@@ -47,7 +55,10 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     },
     {
         sequelize,

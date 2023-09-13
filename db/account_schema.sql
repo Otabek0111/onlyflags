@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS account_db;
-CREATE DATABASE account_db;

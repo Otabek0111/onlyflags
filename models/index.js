@@ -12,6 +12,23 @@ profile,
 user,
 };
 
+<<<<<<< HEAD
+module.exports = db;
+
+// 🔥🔥🔥 For Models / Table Relationships 🔥🔥🔥 
+
+const profile = require('./profile');
+const account = require('./account');
+
+profile.belongsTo(user, {
+  foreignKey: 'accountId',
+});
+
+module.exports = {
+profile, 
+user,
+};
+=======
 
 
 
@@ -58,3 +75,4 @@ user,
 // db.Sequelize = Sequelize;
 
 // module.exports = db;
+>>>>>>> 808fdcc6d5214b0705d095d479c28fb5a066531c
