@@ -41,3 +41,17 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+// 🔥🔥🔥 For Models / Table Relationships 🔥🔥🔥 
+
+const profile = require('./profile');
+const account = require('./account');
+
+profile.belongsTo(user, {
+  foreignKey: 'accountId',
+});
+
+module.exports = {
+profile, 
+user,
+};
