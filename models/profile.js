@@ -59,6 +59,10 @@ profile.init(
             type: DataTypes.STRING,
             allowNull: true,
         },
+        disliked_by_user_ids: {
+            type: DataTypes.JSON,
+            allowNull: true,
+        },
     },
     {
         sequelize,
