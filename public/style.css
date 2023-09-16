@@ -1,27 +1,40 @@
-.bg-white{
+body {
+    font-size: etna sans serif;
+  }
+  .bg-white {
     background: linear-gradient(-45deg, #79de79, #fcfc99, #fb6962);
     /* background: linear-gradient(-45deg,red,yellow, green);  */
-
+  
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-
-}
-
-@keyframes gradient {
+  }
+  .logoBackgroundImg{
+      background: url(./imgs/Screenshot.png) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+  
+  .top- {
+    top: 23rem;
+    margin-top: 200px;
+  }
+  
+  @keyframes gradient {
     0% {
-        background-position: 0% 50%;
+      background-position: 0% 50%;
     }
     25% {
-        background-position: 100% 50%;
+      background-position: 100% 50%;
     }
     50% {
-        background-position: 0% 50%;
+      background-position: 0% 50%;
     }
     75% {
-        background-position: 100% 50%;
+      background-position: 100% 50%;
     }
     100% {
-        background-position: 0% 50%;
+      background-position: 0% 50%;
     }
-    
-}
+  }
