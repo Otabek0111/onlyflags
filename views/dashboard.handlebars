@@ -49,21 +49,7 @@
                    
                    <div id="user-menu-dropdown" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                        <div :class="`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg transition ease-${dropdown ? 'out' : 'in'} duration-${dropdown ? '100' : '75'} transform opacity-${dropdown ? '100' : '0'} scale-${dropdown ? '100' : '95'}`">
-                       </div>
-   
-                       <script>
-                           // Get references to the button and dropdown menu
-                           const button = document.getElementById("user-menu-button");
-                           const dropdown = document.getElementById("user-menu-dropdown");
-                       
-                           // Add a click event listener to the button
-                           button.addEventListener("click", function() {
-                               // Toggle the 'hidden' class on the dropdown menu
-                               dropdown.classList.toggle("hidden");
-                           });
-                       </script>
-   
-                       
+                       </div>                      
                        <!-- Active: "bg-gray-100", Not Active: "" -->
                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
@@ -132,65 +118,80 @@
 
 
 
-  <body>
-     <header class="bg-white shadow mt-0 pt-20 pb-20 flex justify-center">
-        <div>
-            <button class="relative flex items-center justify-center top- bg-red-500 text-white px-20 py-16 shadow-2xl text-2xl rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"/></svg>
-                </div>
 
-            </button>
-        </div>      
-        <div class="flex flex-nowrap justify-center bg-wheat-100 max-w-4xl px-4 py-6 sm:px-6 lg:px-8 shadow-2xl rounded-lg">
-      
-          <div class="items-center">
-            
-            <img class="max-w-sm rounded-xl shadow hover:shadow-lg" src="https://images.unsplash.com/photo-1694309984301-60e69e095ae7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3086&q=80" alt="a woman laying on the ground next to flowers">
-          </div>
-          <!-- <h1 class=" text-3xl font-bold tracking-tight text-gray-900 py-1 ">Profile</h1> -->
-  
-              <!-- Content goes here -->
-            <div class="px-8">
-                <p  > Details </p>
-                <p  >first_name: 'Don', </p>
-                <p  >age: 35, </p>
-                <p  >gender: 'male', </p>
-                <p  >pronoun: 'he/him', </p>
-                <p  >location: 'New York', </p>
-                <p  >green_flag: 'this is a green flag statement' </p>
-                <p  >yellow_flag: 'this is a yellow flag statement', </p>
-                <p  >red_flag: 'this is a red flag statement',</p>
-            </div>
-  
-          </div>
-                      <!-- Center-right button -->
-
-            <div>
-                    <button class="relative flex items-center justify-center top- bg-green-500 text-white px-20 py-16 shadow-2xl text-2xl rounded-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"/></svg>
-                        </div>
-                    </button>
-            </div>
-        </div>
-  
-      </header>
-  </body>
-
+      <body>
+        <header class="bg-white shadow mt-0 pt-20 pb-20 flex justify-center">
+           <div>
+               <button class=" relative flex items-center justify-center top- bg-red-500 text-white px-20 py-16 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                   <div class="absolute inset-0 flex items-center justify-center">
+                       <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"/></svg>
+                   </div>
+               </button>
+           </div>      
+           <div class="flex flex-wrap justify-center bg-wheat-100 max-w-4xl px-4 py-6 sm:px-6 lg:px-8 shadow-2xl rounded-lg">
+             <div class="items-center">
+               <img class="max-w-sm rounded-xl shadow hover:shadow-lg" src="https://images.unsplash.com/photo-1694309984301-60e69e095ae7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3086&q=80" alt="a woman laying on the ground next to flowers">
+             </div>
+             <!-- <h1 class=" text-3xl font-bold tracking-tight text-gray-900 py-1 ">Profile</h1> -->
      
-     <script>
-         // Get references to the button and mobile menu
-         const buttons = document.getElementById("mobile-menu-button");
-         const mobileMenu = document.getElementById("mobile-menu");
+                 <!-- Content goes here -->
+               <div class="px-8">
+                   <p  > Details </p>
+                   <p  >first_name: 'Don', </p>
+                   <p  >age: 35, </p>
+                   <p  >gender: 'male', </p>
+                   <p  >pronoun: 'he/him', </p>
+                   <p  >location: 'New York', </p>
+                   <p  >green_flag: 'this is a green flag statement' </p>
+                   <p  >yellow_flag: 'this is a yellow flag statement', </p>
+                   <p  >red_flag: 'this is a red flag statement',</p>
+               </div>
+     
+             </div>
+                         <!-- Center-right button -->
    
-         // Add a click event listener to the button
-         buttons.addEventListener("click", function() {
-             // Toggle the 'hidden' class on the mobile menu to show/hide it
-             console.log("Button clicked");
-             mobileMenu.classList.toggle("hidden");
-         });
-     </script>
+               <div >
+                       <button class="relative flex items-center justify-center top- bg-green-500 text-white px-20 py-16 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                           <div class="absolute inset-0 flex items-center justify-center">
+                               <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"/></svg>
+                           </div>
+                       </button>
+               </div>
+               
+           </div>
+           <div class="flex flex-wrap justify-center">
+
+            
+
+
+            <div class="sm:flex-row lg:hidden justify-center pt-96 mt-20">
+              <button class=" relative flex-row items-center justify-center bg-red-500 text-white px-10 py-10 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 mb-2 sm:mb-0 sm:mr-2">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path
+                      d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"
+                    />
+                  </svg>
+                </div>
+              </button>
+            
+              <button class="relative flex-row items-center justify-center bg-green-500 text-white px-10 py-10 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 mb-2 sm:mb-0">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path
+                      d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+            
+     
+         </header>
+     </body>
+   
+    
 
 </body>
