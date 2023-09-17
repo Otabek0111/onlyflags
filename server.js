@@ -42,7 +42,11 @@ app.use(passport.session());
 // Define routes
 app.use(routes);
 
-app.get('./views/layouts', function (req, res) {
+app.get('/', (req, res) => {
+  res.render('home');
+});
+
+app.get('/views/layouts', function (req, res) {
   res.render('main');
 });
 
