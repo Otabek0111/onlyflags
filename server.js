@@ -8,10 +8,13 @@ const sequelize = require('./config/connection');
 const routes = require('./controllers');
 const path = require('path'); // For Node.js
 const session = require('express-session'); // Express.js
-const Like = require('./models/Like'); // Import the Like model
+
+//const Account = require('./models/Account');
+//const Profile = require('./models/Profile');
+//const Like = require('./models/Like'); // Import the Like model
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Set up middleware with a secret key
 app.use(
@@ -25,10 +28,7 @@ app.use(
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.engine('handlebars', exphbs({
-  layoutsDir: path.join(__dirname, 'views', 'layouts'), // Specify layouts directory
-  defaultLayout: 'main', // Specify the default layout file (main.handlebars)
-}));
+app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
 // Parse JSON & URL-encoded request bodies
@@ -42,10 +42,14 @@ app.use(passport.session());
 // Define routes
 app.use(routes);
 
-app.get('/', function (req, res) {
-  res.render('home');
+app.get('./views/layouts', function (req, res) {
+  res.render('main');
 });
 
+//router handler for dashboard page
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
 // Synchronize the Like model with the database
 (async () => {
   try {
