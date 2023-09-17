@@ -16,34 +16,45 @@ router.post('/create', async (req, res) => {
         //retrieve profile data from form submission
         //add gender eventually
         const {
+            id, 
+            accountID,
             first_name,
             last_name,
             pronouns,
             age,
             location,
-            green_flags,
-            yellow_flags,
-            red_flags
+            green_flag,
+            yellow_flag,
+            red_flag,
+            image, 
+            disliked_by_user_ids,
         } = req.body;
 
         //create new profile record in database
         const newProfile = await profile.create({
+            id, 
+            accountID,
             first_name,
             last_name,
             pronouns,
             age,
             location,
-            green_flags,
-            yellow_flags,
-            red_flags,
+            green_flag,
+            yellow_flag,
+            red_flag,
+            image, 
+            disliked_by_user_ids,
         });
         //associate profile with user - is it necessary?
-        const user = req.user;
-        await newProfile.setUser(user);
+        if (req.isAuthenticated()) {
+            const user = req.user;
+            await newProfile.setUser(user);
+        }
 
         //redirect to user's profile page (or another page, can change later)
         res.redirect('/profile');
     } catch (err) {
+        console.error(err);
         res.status(500).json(err);
     }
 });
