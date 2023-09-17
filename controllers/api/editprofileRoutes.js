@@ -1,52 +1,48 @@
-//users edit profile
+//users edit Profile
 
 const router = require('express').Router();
-const { profile } = require('../models'); // imports profile model
+const { Profile, Account } = require('../models'); // imports Profile model
 const isAuthenticated = require('../utils/auth'); // Import the middleware
 
-router.get('/editprofile', ensureAuthenticated, async (req, res) => {
+router.get('/editProfile', ensureAuthenticated, async (req, res) => {
     try {
-        if (!req.isAuthenticated()) {
-            return res.status(401).json({ error: 'Unauthorized' });
+        const ProfileData = await Profile.findOne({ where: {AccountId: req.user.id} });
 
+        if (!ProfileData) {
+            return res.status(404).json({ error: 'Profile not found' });
         }
-        const user = req.user;
 
-        res.render('profileEditForm', { user });
+        const Profile = ProfileData.get({ plain: true });
+        res.render('ProfileEditForm', { Profile });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Internal error" });
     }
 });
 
-//handle form submission & update profile
-router.post('/editprofile', ensureAuthenticated, async (req, res) => {
+//handle form submission & update Profile
+router.post('/editProfile', ensureAuthenticated, async (req, res) => {
     try {
-        if (!req.isAuthenticated()) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
-
-        const user = req.user;
-
-        //ADD GENDER EVENTUALLY
-        await profile.update(
+        await Profile.update(
             {
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 pronouns: req.body.pronouns,
                 age: req.body.age,
+                gender: req.body.gender,
                 location: req.body.location,
                 green_flags: req.body.green_flags,
                 yellow_flags: req.body.yellow_flags,
                 red_flags: req.body.red_flags,
             },
             {
-                where: { id: user.id },
+                where: { AccountId: req.Account.id },
             }
         );
 
-        //redirect to profile page after editing
-        res.redirect('/profile')
+        //redirect to Profile page after editing
+        res.redirect('/Profile')
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
@@ -57,7 +53,7 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
-        return res.status(401).json(err);
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 }
 

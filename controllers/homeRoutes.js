@@ -1,20 +1,20 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Account } = require('../models');
 const isAuthenticated = require('../utils/auth'); // Import the middleware
 
 router.get('/home', async (req, res) => {
   try {
-    // Get all users, sorted by name
-    const userData = await User.findAll({
+    // Get all Accounts, sorted by name
+    const AccountData = await Account.findAll({
       attributes: { exclude: ['password'] },
       order: [['name', 'ASC']],
     });
 
-    // Serialize user data so templates can read it
-    const users = userData.map((user) => user.get({ plain: true }));
+    // Serialize Account data so templates can read it
+    const Accounts = AccountData.map((Account) => Account.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
-    res.render('homepage', { users });
+    res.render('homepage', { Accounts });
   } catch (err) {
     res.status(500).json(err);
   }

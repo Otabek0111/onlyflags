@@ -1,33 +1,38 @@
-
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class like extends Model { }
+class Like extends Model { }
 
-
-like.init(
-    {
-        liker_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'profile',
-                key: 'id',
-            },
-        },
-        liked_user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
-        },
+Like.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
+    liker_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Profile',
+        key: 'id',
+      },
+    },
+    liked_account_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Account',
+        key: 'id',
+      },
+    },
+  },
+  {
     sequelize,
-    modelName: 'like',
-    }
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'Like',
+  }
 );
 
-module.exports = like;
+module.exports = Like;

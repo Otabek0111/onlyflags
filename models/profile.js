@@ -1,75 +1,38 @@
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class profile extends Model { }
+class Like extends Model { }
 
-profile.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        accountID: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'account',
-                key: 'id',
-            },
-        },
-        first_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        last_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        age: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        gender: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        pronouns: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        green_flag: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        yellow_flag: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        red_flag: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        disliked_by_user_ids: {
-            type: DataTypes.JSON,
-            allowNull: true,
-        },
+Like.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        sequelize,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'profile',
-    }
+    liker_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Profile',
+        key: 'id',
+      },
+    },
+    liked_account_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Account',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'Like',
+  }
 );
 
-module.exports = profile;
+module.exports = Like;

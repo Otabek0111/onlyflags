@@ -1,14 +1,12 @@
-
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class account extends Model { }
+class Account extends Model {}
 
-
-account.init(
+Account.init(
   {
     id: {
-      type: DataTypes.Integer,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -18,21 +16,14 @@ account.init(
     password: {
       type: DataTypes.STRING,
     },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'Account',
   }
-),
+);
 
-{
-  sequelize,
-  timestamps: false,
-  freezeTableName: true,
-  underscored: true,
-  modelName: 'user',
-}
-
-
-module.exports = account;
-
-
-
-
-
+module.exports = Account;

@@ -1,7 +1,5 @@
 const router = require('express').Router(); 
 const homeRoutes = require('./homeRoutes');
-
-const homeRoutes = require('./homeRoutes');
 const protectedRoutes = require('./protectedRoutes')
 
 router.use('/home', homeRoutes);

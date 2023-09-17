@@ -1,23 +1,24 @@
-//users create profile
+//users create Profile
 
 const router = require('express').Router();
-const { profile } = require('../models');
+const { Profile } = require('../models');
 
-//GET request to display profile creation form
+//GET request to display Profile creation form
 
 router.get('/create', (req, res) => {
-    res.render('profileCreateForm');
+    res.render('ProfileCreateForm');
 });
 
 //POST request to handle form submission
 
 router.post('/create', async (req, res) => {
     try {
-        //retrieve profile data from form submission
+        //retrieve Profile data from form submission
         //add gender eventually
+
         const {
             id, 
-            accountID,
+            AccountId,
             first_name,
             last_name,
             pronouns,
@@ -30,10 +31,10 @@ router.post('/create', async (req, res) => {
             disliked_by_user_ids,
         } = req.body;
 
-        //create new profile record in database
-        const newProfile = await profile.create({
+        //create new Profile record in database
+        const newProfile = await Profile.create({
             id, 
-            accountID,
+            AccountId,
             first_name,
             last_name,
             pronouns,
@@ -45,14 +46,14 @@ router.post('/create', async (req, res) => {
             image, 
             disliked_by_user_ids,
         });
-        //associate profile with user - is it necessary?
-        if (req.isAuthenticated()) {
-            const user = req.user;
-            await newProfile.setUser(user);
+        
+        //associate Profile with Account - is it necessary?
+        if (req.isAuthenticated() && req.Account) {
+            await newProfile.setAccount(req.Account.id);
         }
 
-        //redirect to user's profile page (or another page, can change later)
-        res.redirect('/profile');
+        //redirect to Account's Profile page (or another page, can change later)
+        res.redirect('/Profile');
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
