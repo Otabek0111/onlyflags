@@ -4,6 +4,12 @@ const likeButton = document.getElementById('like-button');
 const dislikeButton = document.getElementById('dislike-button');
 const profileContainer = document.getElementById('profile-container');
 
+const mobileButton = document.getElementById("mobile-menu-button");
+const mobileMenu = document.getElementById("mobile-menu");
+const button = document.getElementById("user-menu-button");
+const dropdown = document.getElementById("user-menu-dropdown");
+
+
 let profileId = null; 
 
 function loadProfile(newProfileData) {
@@ -13,6 +19,7 @@ function loadProfile(newProfileData) {
     profileNameElement.textContent = `${newProfileData.first_name} ${newProfileData.last_name}`;
     profileDescriptionElement.textContent = newProfileData.description;
     profileId = newProfileData.profileId;
+    
 }
 
 function removeCurrentProfileFromUI() {
@@ -164,4 +171,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    mobileButton.addEventListener("click", function() {
+        // Toggle the 'hidden' class on the mobile menu to show/hide it
+        console.log("Button clicked");
+        mobileMenu.classList.toggle("hidden");
+    });
+    // Get references to the button and dropdown menu
+    // Add a click event listener to the button
+    button.addEventListener("click", function () {
+        // Toggle the 'hidden' class on the dropdown menu
+        console.log("Button clicked");
+        dropdown.classList.toggle("hidden");
+    });
 });
