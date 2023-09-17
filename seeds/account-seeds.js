@@ -178,4 +178,4 @@ const accountData = [
 const seedAccounts = () => account.bulkCreate(accountData);
 
 // 🔥🔥🔥Export🔥🔥🔥
-module.export = seedAccounts;
+module.exports = seedAccounts;

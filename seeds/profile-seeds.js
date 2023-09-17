@@ -442,4 +442,4 @@ const profileData = [
 const seedProfiles = () => profile.bulkCreate(profileData);
 
 // 🔥🔥🔥Export🔥🔥🔥
-module.export = seedProfiles;
+module.exports = seedProfiles;
