@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Account, Profile, Like } = require('../models');
 const isAuthenticated = require('../utils/auth'); // Import the middleware
-const profilesData = require('../seeds/profile-seeds'); // Import your data
+const ProfilesData = require('../seeds/profile-seeds'); // Import your data
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -19,7 +19,7 @@ router.get('/createAccount', (req, res) => {
   res.render('createAccount'); // Use the correct handlebars file name
 });
 
-router.get('/profileCreate', (req, res) => {
+router.get('/ProfileCreate', (req, res) => {
   res.render('ProfileCreate');
 });
 
@@ -28,15 +28,25 @@ router.get('/existingAccount/login', (req, res) => {
 });
 
 router.get('/dashboard', async (req, res) => {
-  res.render('dashboard', { profiles: profilesData });
+  try {
+    // Fetch all Profiles from the database
+    const Profiles = await Profile.findAll();
+
+    // Render the 'dashboard' template and pass the 'Profiles' data to it
+    res.render('dashboard', { Profiles });
+  } catch (error) {
+    // Handle any errors that occur during the database query
+    console.error('Error fetching Profiles:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 router.get('/matches', (req, res) => {
   res.render('matches');
 });
 
-router.get('/profileUpdate', (req, res) => {
-  res.render('profileUpdate');
+router.get('/ProfileUpdate', (req, res) => {
+  res.render('ProfileUpdate');
 });
 
 router.get('/editProfile', ensureAuthenticated, async (req, res) => {
@@ -48,7 +58,7 @@ router.get('/editProfile', ensureAuthenticated, async (req, res) => {
       }
 
       const Profile = ProfileData.get({ plain: true });
-      res.render('profileUpdate', { Profile });
+      res.render('ProfileUpdate', { Profile });
 
   } catch (err) {
       console.error(err);

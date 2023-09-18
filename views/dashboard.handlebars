@@ -177,18 +177,30 @@
           <!-- <h1 class=" text-3xl font-bold tracking-tight text-gray-900 py-1 ">Profile</h1> -->
 
           <!-- Content goes here -->
-          <div class="px-8">
-            {{#each profiles}}
-            <p>Age: {{profiles.age}}</p>
-            <p>First Name: {{profiles.first_name}}</p>
-            <p>Last Name: {{profiles.last_name}}</p>
-            <p>Pronouns: {{profiles.pronouns}}</p>
-            <p>Location: {{profiles.location}}</p>
-            <p>Green Flag: {{profiles.green_flag}}</p>
-            <p>Yellow Flag: {{profiles.yellow_flag}}</p>
-            <p>Red Flag: {{profiles.red_flag}}</p>
-            {{/each}}
+          {{!-- <div class="px-8">
+               <p>First Name: Ellie</p>
+               <p>Last Name: Smith</p>
+               <p>Age: 21</p>
+               <p>Gender: Female</p>
+               <p>Pronouns: she/her</p>
+               <p>Location: Manhattan</p>
+               <p>Green Flag: I have an extensive collection of films from various genres, and I love nothing more than cozying up for a movie night, complete with popcorn and in-depth discussions about the plot, characters, and cinematic techniques.</p>
+               <p>Yellow Flag: It is important that people understand the deeper symbolism in films. If you cannot appreciate the intricacies of movie's subtext, we probably won't have much to talk about.</p>
+               <p>Red Flag: I expect my partner to watch every movie I recommend and be available for lengthy discussions about them. If you can't keep up with my movie-watching pace, it won't work out.</p> --}}
+            <div class="px-8">
+            {{#each Profiles as |Profile|}}
+            <p>Age: {{Profile.age}}</p>
+            <p>First Name: {{Profile.first_name}}</p>
+            <p>Last Name: {{Profile.last_name}}</p>
+            <p>Pronouns: {{Profile.pronouns}}</p>
+            <p>Location: {{Profile.location}}</p>
+            <p>Green Flag: {{Profile.green_flag}}</p>
+            <p>Yellow Flag: {{Profile.yellow_flag}}</p>
+            <p>Red Flag: {{Profile.red_flag}}</p>
+            {{/each}} 
           </div>
+        
+     
 
         </div>
         <!-- Center-right button -->
@@ -238,14 +250,14 @@
 
 
     </header>
-    <script>
-      document.getElementById('like-button').addEventListener('click', function () {
-        window.location.href = '/likes/:ProfileId';
+    {{!-- <script>
+      {{!--// document.getElementById('like-button').addEventListener('click', function () {
+        //window.location.href = '/likes/:ProfileId';
       });
-      document.getElementById('dislike-button').addEventListener('click', function () {
-        window.location.href = '/likes/dislikes/:ProfileId';
-      });
-    </script>
+    //  document.getElementById('dislike-button').addEventListener('click', function () {
+      //  window.location.href = '/likes/dislikes/:ProfileId';
+      }); --}}
+    </script> --}}
 </body>
 
 </body>
