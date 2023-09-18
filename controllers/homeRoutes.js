@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Account, Profile, Like } = require('../models');
 const isAuthenticated = require('../utils/auth'); // Import the middleware
+const profilesData = require('../seeds/profile-seeds'); // Import your data
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -27,8 +28,7 @@ router.get('/existingAccount/login', (req, res) => {
 });
 
 router.get('/dashboard', async (req, res) => {
-  const profileData = await Profile.findOne({ where: { AccountId: req.session.account_id } }); 
-  res.render('dashboard',{profileData} );
+  res.render('dashboard', { profiles: profilesData });
 });
 
 router.get('/matches', (req, res) => {

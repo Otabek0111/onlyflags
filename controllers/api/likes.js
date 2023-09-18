@@ -47,7 +47,7 @@ router.post('/likes/:ProfileId', isAuthenticated, async (req, res) => {
 });
 
 // Route handler for disliking a profile
-router.delete('/likes/:ProfileId', isAuthenticated, async (req, res) => {
+router.delete('/likes/dislikes/:ProfileId', isAuthenticated, async (req, res) => {
   try {
     const { AccountId } = req.body;
 
