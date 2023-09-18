@@ -1,9 +1,9 @@
 // route for existing Accounters to login & log out
 //part of user authentication
 const router = require('express').Router();
-const { Account } = require('../../models');
+const { Account, Like, Profile } = require('../../models');
 
-router.post('/existingAccount/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const AccountData = await Account.findOne({ where: { email } });

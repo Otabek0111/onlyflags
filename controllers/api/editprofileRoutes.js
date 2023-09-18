@@ -1,25 +1,8 @@
 //users edit Profile
 
 const router = require('express').Router();
-const { Profile, Account } = require('../models'); // imports Profile model
-const isAuthenticated = require('../utils/auth'); // Import the middleware
-
-router.get('/editProfile', ensureAuthenticated, async (req, res) => {
-    try {
-        const ProfileData = await Profile.findOne({ where: {AccountId: req.user.id} });
-
-        if (!ProfileData) {
-            return res.status(404).json({ error: 'Profile not found' });
-        }
-
-        const Profile = ProfileData.get({ plain: true });
-        res.render('ProfileEditForm', { Profile });
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Internal error" });
-    }
-});
+const { Account, Profile, Like } = require('../../models');
+const isAuthenticated = require('../../utils/auth'); // Import the middleware
 
 //handle form submission & update Profile
 router.post('/editProfile', ensureAuthenticated, async (req, res) => {

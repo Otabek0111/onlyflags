@@ -1,20 +1,15 @@
 //users create Profile
 
 const router = require('express').Router();
-const { Profile } = require('../models');
+const { Account, Profile, Like } = require('../../models');
 
 //GET request to display Profile creation form
 
-router.get('/create', (req, res) => {
-    res.render('ProfileCreateForm');
-});
-
 //POST request to handle form submission
 
-router.post('/create', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         //retrieve Profile data from form submission
-        //add gender eventually
 
         const {
             id, 
@@ -27,7 +22,6 @@ router.post('/create', async (req, res) => {
             green_flag,
             yellow_flag,
             red_flag,
-            image, 
             disliked_by_user_ids,
         } = req.body;
 
@@ -53,7 +47,7 @@ router.post('/create', async (req, res) => {
         }
 
         //redirect to Account's Profile page (or another page, can change later)
-        res.redirect('/Profile');
+        res.redirect('dashboard');
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

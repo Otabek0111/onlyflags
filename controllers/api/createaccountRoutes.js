@@ -1,40 +1,34 @@
-//route for new folks to create their Account
-//part of user authentication
-
 const router = require('express').Router();
-const { Account } = require('../../models');
+const { Account, Like, Profile } = require('../../models');
 const bcrypt = require('bcrypt');
 
+// POST request to handle form submission
 router.post('/createAccount', async (req, res) => {
     try {
-        const existingUser = await Account.findOne({ where: { email: req.body.email } });
+        const existingAccount = await Account.findOne({ where: { email: req.body.email } });
 
-        if (existingUser) {
+        if (existingAccount) {
             return res.status(400).json({ message: 'Email is already in use' });
         }
 
-        //generate a salt and hash password
+        // generate a salt and hash password
         const saltRounds = 10;
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-        const newUser = await Account.create({
+        const newAccount = await Account.create({
             username: req.body.username,
             email: req.body.email,
             password: hashedPassword,
         });
 
-        //log in automatically after registration
+        // log in automatically after registration
         req.session.save(() => {
-            req.session.user_id = newUser.id;
+            req.session.user_id = newAccount.id;
             req.session.logged_in = true;
 
-            //make sure redirectTo is the actual path
-            res.status(201).json({
-                Account: newUser,
-                message: 'Registration successful!',
-                redirectTo: '/createProfileRoutes',
-            });
+            // render the profileCreate.handlebars view upon successful registration
+            res.render('profileCreate'); 
         });
     } catch (err) {
         console.error(err);

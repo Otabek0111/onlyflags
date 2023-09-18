@@ -1,108 +1,88 @@
-//both the like and dislike routes will return new Profile
-
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const { Sequelize } = require('../../config/connection');
-const { like, Profile } = require('../models');
-const isAuthenticated = require('../utils/auth'); // Import the middleware
+const { Account, Like, Profile } = require('../../models');
+const isAuthenticated = require('../../utils/auth'); // Import the middleware
 
-router.use(async (req, res, next) => {
-    if (req.session && req.session.Account_id) {
-        const Account = await Account.findbyPk(req.session.Account_id);
-        req.Account = Account ? { id: Account.id } : null;
-    }
-    next();
-})
-
-// function to fetch new Profile
-
+// Middleware to fetch the new profile
 const fetchNewProfile = async (AccountId, seenProfileId) => {
-    try {
-        const newProfile = await Profile.findOne({
-            where: {
-                id: { [Sequelize.Op.notIn]: seenProfileId }, // excludes liked or disliked Profiles
-            },
-        });
+  try {
+    const newProfile = await Profile.findOne({
+      where: {
+        id: { [Sequelize.Op.notIn]: seenProfileId }, // Excludes liked or disliked Profiles
+      },
+    });
 
-        return newProfile;
-    } catch (err) {
-        throw err;
-    }
+    return newProfile;
+  } catch (err) {
+    throw err;
+  }
 };
 
-router.use(isAuthenticated);
+// Route handler for liking a profile
+router.post('/likes/:ProfileId', isAuthenticated, async (req, res) => {
+  try {
+    const { AccountId } = req.body;
 
-router.get('/new', async (req, res) => {
-    try {
-        const newProfile = await fetchNewProfile(req.Account.id, [req.Account.id]);
+    // Create a like record
+    await like.create({
+      liker_id: AccountId,
+      liked_Account_id: req.params.ProfileId,
+      is_dislike: false,
+    });
 
-        if (!newProfile) {
-            return res.status(404).json({ message: 'No more Profiles available' });
-        }
+    // Fetch the new profile data
+    const newProfile = await fetchNewProfile(AccountId, [AccountId]);
 
-        res.json({ Profile: newProfile });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
+    if (!newProfile) {
+      return res.status(404).json({ message: 'No more Profiles available' });
     }
+
+    // Render the matches.handlebars view and pass the new profile data
+    res.render('matches', { newProfile });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 });
 
-router.post('/likes/:ProfileId', async (req, res) => {
-    try {
-        const { AccountId } = req.body;
+// Route handler for disliking a profile
+router.delete('/likes/:ProfileId', isAuthenticated, async (req, res) => {
+  try {
+    const { AccountId } = req.body;
 
-        //create like record
-        await like.create({
-            liker_id: AccountId,
-            liked_Account_id: req.params.ProfileId,
-            is_dislike: false
-        });
+    const existingDislike = await like.findOne({
+      where: {
+        liker_id: AccountId,
+        liked_Account_id: req.params.ProfileId,
+        is_dislike: true,
+      },
+    });
 
-        const newProfile = await fetchNewProfile(AccountId, [AccountId]);
-
-        if (!newProfile) {
-            return res.status(404).json({ message: 'No more Profiles available' });
-        }
-
-        res.status(200).json({ message: "You've flagged down love!" });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
+    if (existingDislike) {
+      return res.status(400).json({ message: 'You already disliked this Profile' });
     }
-});
 
-router.delete('/likes/:ProfileId', async (req, res) => {
-    try {
-        const { AccountId } = req.body;
+    // Create a dislike record
+    await like.create({
+      liker_id: AccountId,
+      liked_Account_id: req.params.ProfileId,
+      is_dislike: true,
+    });
 
-        const existingDislike = await like.findOne({
-            where: {
-                liker_id: AccountId,
-                liked_Account_id: req.params.ProfileId,
-                is_dislike: true
-            },
-        });
+    // Fetch the new profile data
+    const newProfile = await fetchNewProfile(AccountId);
 
-        if (existingDislike) {
-            return res.status(400).json({ message: 'You already disliked this Profile'})
-        }
-
-        await like.create({
-            liker_id: AccountId,
-            liked_Account_id: req.params.ProfileId,
-            is_dislike: true,
-        });
-
-        const newProfile = await fetchNewProfile(AccountId);
-
-        if (!newProfile) {
-            return res.status(404).json({ message: 'No more Profiles available' });
-        }
-
-        res.status(200).json('Profile disliked');
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
+    if (!newProfile) {
+      return res.status(404).json({ message: 'No more Profiles available' });
     }
+
+    // Render the matches.handlebars view and pass the new profile data
+    res.render('matches', { newProfile });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

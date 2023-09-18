@@ -9,9 +9,9 @@ const routes = require('./controllers');
 const path = require('path'); // For Node.js
 const session = require('express-session'); // Express.js
 
-//const Account = require('./models/Account');
-//const Profile = require('./models/Profile');
-//const Like = require('./models/Like'); // Import the Like model
+const Account = require('./models/Account');
+const Profile = require('./models/Profile');
+const Like = require('./models/Like');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -42,18 +42,34 @@ app.use(passport.session());
 // Define routes
 app.use(routes);
 
-app.get('/', (req, res) => {
-  res.render('home');
-});
+// const createAccountRoutes = require('./controllers/api/createAccountRoutes');
+// const createProfileRoutes = require('./controllers/api/createProfileRoutes');
+// const editProfileRoutes = require('./controllers/api/editProfileRoutes');
+// const existingAccountRoutes = require('./controllers/api/existingAccountRoutes');
+// const likes = require('./controllers/api/likes');
+// const homeRoutes = require('./controllers/homeRoutes');
+// const protectedRoutes = require('./controllers/protectedRoutes');
 
-app.get('/views/layouts', function (req, res) {
-  res.render('main');
-});
+// app.use('/createAccount', createAccountRoutes); 
+// app.use('/profileCreate', createProfileRoutes); 
+// app.use('/editProfile', editProfileRoutes); 
+// app.use('/existingAccount', existingAccountRoutes); 
+// app.use('/likes', likes); 
+// app.use('/home', homeRoutes); 
+// app.use('/protected', protectedRoutes);
 
-//router handler for dashboard page
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
+// app.get('/', (req, res) => {
+//   res.render('home');
+// });
+
+// app.get('/views/layouts', function (req, res) {
+//   res.render('main');
+// });
+
+// //router handler for dashboard page
+// app.get('/dashboard', (req, res) => {
+//   res.render('dashboard');
+// });
 // Synchronize the Like model with the database
 (async () => {
   try {
