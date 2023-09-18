@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Account } = require('../models');
+const { Account, Profile, Like } = require('../models');
 const isAuthenticated = require('../utils/auth'); // Import the middleware
 
 function ensureAuthenticated(req, res, next) {
@@ -24,6 +24,19 @@ router.get('/profileCreate', (req, res) => {
 
 router.get('/existingAccount/login', (req, res) => {
   res.render('signin');
+});
+
+router.get('/dashboard', async (req, res) => {
+  const profileData = await Profile.findOne({ where: { AccountId: req.session.account_id } }); 
+  res.render('dashboard',{profileData} );
+});
+
+router.get('/matches', (req, res) => {
+  res.render('matches');
+});
+
+router.get('/profileUpdate', (req, res) => {
+  res.render('profileUpdate');
 });
 
 router.get('/editProfile', ensureAuthenticated, async (req, res) => {

@@ -1,11 +1,18 @@
 //users create Profile
 
 const router = require('express').Router();
-const { Account, Profile, Like } = require('../../models');
+//const { Account, Profile, Like } = require('../../models/Profile');
+const Profile = require('../../models/Profile');
 
 //GET request to display Profile creation form
 
 //POST request to handle form submission
+
+function generateAccountId() {
+    const randomNum = Math.floor(Math.random() * 1000); // Generate a random number between 0 and 100
+    return randomNum;
+}
+  
 
 router.post('/', async (req, res) => {
     try {
@@ -13,41 +20,42 @@ router.post('/', async (req, res) => {
 
         const {
             id, 
-            AccountId,
+            age,
             first_name,
             last_name,
-            pronouns,
-            age,
+            // gender,
+            // pronouns,
             location,
             green_flag,
             yellow_flag,
             red_flag,
-            disliked_by_user_ids,
+            // disliked_by_user_ids,
         } = req.body;
 
+        const AccountId = req.session.account_id;
         //create new Profile record in database
         const newProfile = await Profile.create({
             id, 
             AccountId,
+            age,
             first_name,
             last_name,
-            pronouns,
-            age,
+            // gender,
+            // pronouns,
             location,
             green_flag,
             yellow_flag,
             red_flag,
-            image, 
-            disliked_by_user_ids,
+            // disliked_by_user_ids,
         });
         
-        //associate Profile with Account - is it necessary?
-        if (req.isAuthenticated() && req.Account) {
-            await newProfile.setAccount(req.Account.id);
-        }
+        // //associate Profile with Account - is it necessary?
+        // if (req.isAuthenticated() && req.Account) {
+        //     await newProfile.setAccount(req.Account.id);
+        // }
 
         //redirect to Account's Profile page (or another page, can change later)
-        res.redirect('dashboard');
+        res.redirect('/dashboard');
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

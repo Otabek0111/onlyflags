@@ -17,6 +17,10 @@ Profile.init(
                 key: 'id',
             },
         },
+        age: {
+            type: DataTypes.INTEGER,
+            defaultValue: 18,
+        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -25,16 +29,12 @@ Profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        age: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        gender: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
+        // gender: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },
         pronouns: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         location: {
@@ -53,14 +53,14 @@ Profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        disliked_by_user_ids: {
-            type: DataTypes.JSON,
-            allowNull: true,
-        },
+        // // image: {
+        // //     type: DataTypes.STRING,
+        // //     allowNull: true,
+        // },
+        // disliked_by_user_ids: {
+        //     type: DataTypes.JSON,
+        //     allowNull: true,
+        // },
     },
     {
         sequelize,

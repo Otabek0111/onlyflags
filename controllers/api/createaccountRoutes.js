@@ -3,7 +3,7 @@ const { Account, Like, Profile } = require('../../models');
 const bcrypt = require('bcrypt');
 
 // POST request to handle form submission
-router.post('/createAccount', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const existingAccount = await Account.findOne({ where: { email: req.body.email } });
 
@@ -21,15 +21,19 @@ router.post('/createAccount', async (req, res) => {
             email: req.body.email,
             password: hashedPassword,
         });
+        req.session.account_id = newAccount.id;
+        res.redirect('/profileCreate');
+        // // log in automatically after registration
+        // req.session.save(() => {
+        //     session.user_id = newAccount.id;
+        //     session.logged_in = true;
 
-        // log in automatically after registration
-        req.session.save(() => {
-            req.session.user_id = newAccount.id;
-            req.session.logged_in = true;
+        //     // render the profileCreate.handlebars view upon successful registration
+            
+        // });
 
-            // render the profileCreate.handlebars view upon successful registration
-            res.render('profileCreate'); 
-        });
+        
+
     } catch (err) {
         console.error(err);
         if (err.name === 'SequelizeValidationError') {

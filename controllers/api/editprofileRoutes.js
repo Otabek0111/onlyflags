@@ -5,7 +5,7 @@ const { Account, Profile, Like } = require('../../models');
 const isAuthenticated = require('../../utils/auth'); // Import the middleware
 
 //handle form submission & update Profile
-router.post('/editProfile', ensureAuthenticated, async (req, res) => {
+router.post('/', ensureAuthenticated, async (req, res) => {
     try {
         await Profile.update(
             {

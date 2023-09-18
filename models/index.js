@@ -1,13 +1,13 @@
 const Profile = require('./Profile');
 const Account = require('./Account');
 
-// Establishes relationships
+//establishes relationships
 Account.hasOne(Profile, {
   foreignKey: 'AccountId',
-  onDelete: 'CASCADE'
+  // onDelete: 'CASCADE'
 });
 
-Profile.belongsTo(Account, { // Change 'user' to 'Account'
+Profile.belongsTo(Account, {
   foreignKey: 'AccountId',
 });
 
