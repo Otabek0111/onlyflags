@@ -30,7 +30,11 @@ router.get('/existingAccount/login', (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     // Fetch all Profiles from the database
-    const Profiles = await Profile.findAll();
+    const ProfilesData = await Profile();
+    
+    const Profiles = ProfilesData.map((Profile) => Profile.get({ plain: true }));
+    
+    console.log(Profiles);
 
     // Render the 'dashboard' template and pass the 'Profiles' data to it
     res.render('dashboard', { Profiles });

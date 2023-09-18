@@ -29,10 +29,6 @@ Profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // gender: {
-        //     type: DataTypes.STRING,
-        //     allowNull: true,
-        // },
         pronouns: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -53,14 +49,6 @@ Profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // // image: {
-        // //     type: DataTypes.STRING,
-        // //     allowNull: true,
-        // },
-        // disliked_by_user_ids: {
-        //     type: DataTypes.JSON,
-        //     allowNull: true,
-        // },
     },
     {
         sequelize,
