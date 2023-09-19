@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const createAccountRoutes = require('./createAccountRoutes');
-const createProfileRoutes = require('./createProfileRoutes.js');
-const editProfileRoutes = require('./editProfileRoutes');
-const existingAccountRoutes = require('./existingAccountRoutes.js');
+const createAccountRoutes = require('./createaccountRoutes');
+const createProfileRoutes = require('./createprofileRoutes');
+const editProfileRoutes = require('./editprofileRoutes');
+const existingAccountRoutes = require('./existingAccountRoutes');
 const likesRoutes = require('./likes');
 
 router.use('/createAccount', createAccountRoutes);
