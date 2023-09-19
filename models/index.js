@@ -1,5 +1,5 @@
-const Profile = require('./Profile');
-const Account = require('./Account');
+const Profile = require('./profile');
+const Account = require('./account');
 
 //establishes relationships
 Account.hasOne(Profile, {

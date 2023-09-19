@@ -9,9 +9,9 @@ const routes = require('./controllers');
 const path = require('path'); // For Node.js
 const session = require('express-session'); // Express.js
 
-const Account = require('./models/Account');
-const Profile = require('./models/Profile');
-const Like = require('./models/Like');
+// const Account = require('./models/Account');
+// const Profile = require('./models/Profile');
+// const Like = require('./models/Like');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -44,7 +44,7 @@ app.use(routes);
 
 (async () => {
   try {
-    await sequelize.sync({ force: false }); // Set force to true to drop and recreate the table
+    await sequelize.sync({ force: true }); // Set force to true to drop and recreate the table
     console.log('Like table synchronized with the database.');
   } catch (error) {
     console.error('Error synchronizing Like table:', error);
