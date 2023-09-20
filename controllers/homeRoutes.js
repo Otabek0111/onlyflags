@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { account, profile, like } = require('../models');
 const isAuthenticated = require('../utils/auth'); // Import the middleware
-const profilesData = require('../seeds/profile-seeds'); // Import your data
+const profileData = require('../seeds/profile-seeds'); // Import your data
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -10,6 +10,17 @@ function ensureAuthenticated(req, res, next) {
       return res.status(401).json({ error: 'Unauthorized' });
   }
 }
+
+// class accountidGenerator {
+//   generateaccountId() {
+//       const randomNum = Math.floor(Math.random() * 1000); // Generate a random number between 0 and 100
+//       return randomNum;
+// }
+//  //test
+// }
+
+// const generator = new accountidGenerator();
+// const accountid = generator.generateaccountId();
 
 router.get('/', (req, res) => {
   res.render('home');
@@ -30,9 +41,9 @@ router.get('/existingaccount/login', (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     // Fetch all profiles from the database
-    const profilesData = await profile();
+    const profileData = await profile.findAll();
     
-    const profiles = profilesData.map((profile) => profile.get({ plain: true }));
+    const profiles = profileData.map((profile) => profile.get({ plain: true }));
     
     console.log(profiles);
 

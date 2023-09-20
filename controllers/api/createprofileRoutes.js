@@ -7,12 +7,16 @@ const profile = require('../../models/profile');
 //GET request to display profile creation form
 
 //POST request to handle form submission
-
-function generateaccountId() {
-    const randomNum = Math.floor(Math.random() * 1000); // Generate a random number between 0 and 100
-    return randomNum;
+class accountidGenerator {
+    generateaccountId() {
+        const randomNum = Math.floor(Math.random() * 1000); // Generate a random number between 0 and 100
+        return randomNum;
 }
    //test
+}
+
+const generator = new accountidGenerator();
+const accountid = generator.generateaccountId();
 
 router.post('/', async (req, res) => {
     try {
@@ -32,11 +36,10 @@ router.post('/', async (req, res) => {
             // disliked_by_user_ids,
         } = req.body;
 
-        const accountId = req.session.account_id;
         //create new profile record in database
         const newprofile = await profile.create({
             id, 
-            accountId,
+            accountid,
             age,
             first_name,
             last_name,
