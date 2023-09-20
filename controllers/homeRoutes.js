@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
-router.get('/createaccount', (req, res) => {
-  res.render('createaccount'); // Use the correct handlebars file name
+router.get('/createAccount', (req, res) => {
+  res.render('createAccount'); // Use the correct handlebars file name
 });
 
 router.get('/profileCreate', (req, res) => {

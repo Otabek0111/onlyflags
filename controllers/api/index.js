@@ -6,7 +6,7 @@ const editprofileRoutes = require('./editprofileRoutes');
 const existingaccountRoutes = require('./existingaccountRoutes');
 const likesRoutes = require('./likes');
 
-router.use('/createaccount', createaccountRoutes);
+router.use('/createAccount', createaccountRoutes);
 router.use('/profileCreate', createprofileRoutes);
 router.use('/editprofile', editprofileRoutes);
 router.use('/existingaccount', existingaccountRoutes);
