@@ -12,7 +12,7 @@ function generateAccountId() {
     const randomNum = Math.floor(Math.random() * 1000); // Generate a random number between 0 and 100
     return randomNum;
 }
-  
+   //test
 
 router.post('/', async (req, res) => {
     try {
