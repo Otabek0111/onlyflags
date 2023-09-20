@@ -1,17 +1,17 @@
-const Profile = require('./profile');
-const Account = require('./account');
+const profile = require('./profile');
+const account = require('./account');
 
 //establishes relationships
-Account.hasOne(Profile, {
-  foreignKey: 'AccountId',
+account.hasOne(profile, {
+  foreignKey: 'accountId',
   // onDelete: 'CASCADE'
 });
 
-Profile.belongsTo(Account, {
-  foreignKey: 'AccountId',
+profile.belongsTo(account, {
+  foreignKey: 'accountId',
 });
 
 module.exports = {
-  Profile, 
-  Account,
+  profile, 
+  account,
 };

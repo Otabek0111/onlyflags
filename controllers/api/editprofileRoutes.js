@@ -1,13 +1,13 @@
-//users edit Profile
+//users edit profile
 
 const router = require('express').Router();
-const { Account, Profile, Like } = require('../../models');
+const { account, profile, like } = require('../../models');
 const isAuthenticated = require('../../utils/auth'); // Import the middleware
 
-//handle form submission & update Profile
+//handle form submission & update profile
 router.post('/', ensureAuthenticated, async (req, res) => {
     try {
-        await Profile.update(
+        await profile.update(
             {
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -20,12 +20,12 @@ router.post('/', ensureAuthenticated, async (req, res) => {
                 red_flags: req.body.red_flags,
             },
             {
-                where: { AccountId: req.Account.id },
+                where: { accountId: req.account.id },
             }
         );
 
-        //redirect to Profile page after editing
-        res.redirect('/Profile')
+        //redirect to profile page after editing
+        res.redirect('/profile')
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

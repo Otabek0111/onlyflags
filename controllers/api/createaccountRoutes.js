@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const { Account, Like, Profile } = require('../../models');
+const { account, like, profile } = require('../../models');
 const bcrypt = require('bcrypt');
 
 // POST request to handle form submission
 router.post('/', async (req, res) => {
     try {
-        const existingAccount = await Account.findOne({ where: { email: req.body.email } });
+        const existingaccount = await account.findOne({ where: { email: req.body.email } });
 
-        if (existingAccount) {
+        if (existingaccount) {
             return res.status(400).json({ message: 'Email is already in use' });
         }
 
@@ -16,16 +16,16 @@ router.post('/', async (req, res) => {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-        const newAccount = await Account.create({
+        const newaccount = await account.create({
             username: req.body.username,
             email: req.body.email,
             password: hashedPassword,
         });
-        req.session.account_id = newAccount.id;
+        req.session.account_id = newaccount.id;
         res.redirect('/profileCreate');
         // // log in automatically after registration
         // req.session.save(() => {
-        //     session.user_id = newAccount.id;
+        //     session.user_id = newaccount.id;
         //     session.logged_in = true;
 
         //     // render the profileCreate.handlebars view upon successful registration

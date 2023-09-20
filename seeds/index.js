@@ -1,6 +1,6 @@
 // 🔥🔥🔥Imports🔥🔥🔥
-const seedAccounts = require('./account-seeds');
-const seedProfiles = require('./profile-seeds');
+const seedaccounts = require('./account-seeds');
+const seedprofiles = require('./profile-seeds');
 
 const sequelize = require('../config/connection');
 
@@ -11,11 +11,11 @@ const seedAll = async () => {
 await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
   
-  await seedAccounts();
-  console.log('\n----- ACCOUNTS SEEDED -----\n');
+  await seedaccounts();
+  console.log('\n----- accountS SEEDED -----\n');
 
-  await seedProfiles();
-  console.log('\n----- PROFILES SEEDED -----\n');
+  await seedprofiles();
+  console.log('\n----- profileS SEEDED -----\n');
 
   process.exit(0);
 };

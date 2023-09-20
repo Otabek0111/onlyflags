@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-class Profile extends Model { }
-Profile.init(
+class profile extends Model { }
+profile.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -9,11 +9,11 @@ Profile.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        AccountId: {
+        accountId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Account',
+                model: 'account',
                 key: 'id',
             },
         },
@@ -54,7 +54,7 @@ Profile.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Profile',
+        modelName: 'profile',
     }
 );
-module.exports = Profile;
+module.exports = profile;

@@ -1,14 +1,14 @@
-//can only be accessed by authenticated Accounts
+//can only be accessed by authenticated accounts
 
 const router = require('express').Router();
 const isAuthenticated = require('../utils/auth');
-const existingAccountRoutes = require('./api/existingAccountRoutes');
+const existingaccountRoutes = require('./api/existingaccountRoutes');
 
-//protected dashboard route accessible to authenticated Accounts
+//protected dashboard route accessible to authenticated accounts
 router.get('/dashboard', isAuthenticated, (req, res) => {
     res.render('dashboard');
 });
 
-router.use('/protected/existingAccount', existingAccountRoutes);
+router.use('/protected/existingaccount', existingaccountRoutes);
 
 module.exports = router;

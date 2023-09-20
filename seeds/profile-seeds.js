@@ -1,4 +1,4 @@
-const { Profile } = require('../models');
+const { profile } = require('../models');
 
 // Review foreign key relationship
 const profileData = [
@@ -439,19 +439,19 @@ const profileData = [
 ]
 
 //🔥🔥🔥Seed Function🔥🔥🔥
-const seedProfiles = async () => {
+const seedprofiles = async () => {
     try {
-      // Use bulkCreate to insert the Profile data into the 'Profile' table
-      const createdProfiles = await Profile.bulkCreate(profileData);
-      console.log('Profiles seeded successfully:', createdProfiles);
+      // Use bulkCreate to insert the profile data into the 'profile' table
+      const createdprofiles = await profile.bulkCreate(profileData);
+      console.log('profiles seeded successfully:', createdprofiles);
     } catch (error) {
       console.error('Error seeding profiles:', error);
     }
   };
   
-  // Call the seedProfiles function to seed the data
+  // Call the seedprofiles function to seed the data
 
-seedProfiles();
+seedprofiles();
 
 // 🔥🔥🔥Export🔥🔥🔥
-module.exports = seedProfiles;
+module.exports = seedprofiles;

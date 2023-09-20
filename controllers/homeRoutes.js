@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { Account, Profile, Like } = require('../models');
+const { account, profile, like } = require('../models');
 const isAuthenticated = require('../utils/auth'); // Import the middleware
-const ProfilesData = require('../seeds/profile-seeds'); // Import your data
+const profilesData = require('../seeds/profile-seeds'); // Import your data
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -15,32 +15,32 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
-router.get('/createAccount', (req, res) => {
-  res.render('createAccount'); // Use the correct handlebars file name
+router.get('/createaccount', (req, res) => {
+  res.render('createaccount'); // Use the correct handlebars file name
 });
 
-router.get('/ProfileCreate', (req, res) => {
-  res.render('ProfileCreate');
+router.get('/profileCreate', (req, res) => {
+  res.render('profileCreate');
 });
 
-router.get('/existingAccount/login', (req, res) => {
+router.get('/existingaccount/login', (req, res) => {
   res.render('signin');
 });
 
 router.get('/dashboard', async (req, res) => {
   try {
-    // Fetch all Profiles from the database
-    const ProfilesData = await Profile();
+    // Fetch all profiles from the database
+    const profilesData = await profile();
     
-    const Profiles = ProfilesData.map((Profile) => Profile.get({ plain: true }));
+    const profiles = profilesData.map((profile) => profile.get({ plain: true }));
     
-    console.log(Profiles);
+    console.log(profiles);
 
-    // Render the 'dashboard' template and pass the 'Profiles' data to it
-    res.render('dashboard', { Profiles });
+    // Render the 'dashboard' template and pass the 'profiles' data to it
+    res.render('dashboard', { profiles });
   } catch (error) {
     // Handle any errors that occur during the database query
-    console.error('Error fetching Profiles:', error);
+    console.error('Error fetching profiles:', error);
     res.status(500).send('Internal Server Error');
   }
 });
@@ -49,20 +49,20 @@ router.get('/matches', (req, res) => {
   res.render('matches');
 });
 
-router.get('/ProfileUpdate', (req, res) => {
-  res.render('ProfileUpdate');
+router.get('/profileUpdate', (req, res) => {
+  res.render('profileUpdate');
 });
 
-router.get('/editProfile', ensureAuthenticated, async (req, res) => {
+router.get('/editprofile', ensureAuthenticated, async (req, res) => {
   try {
-      const ProfileData = await Profile.findOne({ where: {AccountId: req.user.id} });
+      const profileData = await profile.findOne({ where: {accountId: req.user.id} });
 
-      if (!ProfileData) {
-          return res.status(404).json({ error: 'Profile not found' });
+      if (!profileData) {
+          return res.status(404).json({ error: 'profile not found' });
       }
 
-      const Profile = ProfileData.get({ plain: true });
-      res.render('ProfileUpdate', { Profile });
+      const profile = profileData.get({ plain: true });
+      res.render('profileUpdate', { profile });
 
   } catch (err) {
       console.error(err);
@@ -72,17 +72,17 @@ router.get('/editProfile', ensureAuthenticated, async (req, res) => {
 
 router.get('/home', async (req, res) => {
   try {
-    // Get all Accounts, sorted by name
-    const AccountData = await Account.findAll({
+    // Get all accounts, sorted by name
+    const accountData = await account.findAll({
       attributes: { exclude: ['password'] },
       order: [['name', 'ASC']],
     });
 
-    // Serialize Account data so templates can read it
-    const Accounts = AccountData.map((Account) => Account.get({ plain: true }));
+    // Serialize account data so templates can read it
+    const accounts = accountData.map((account) => account.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
-    res.render('homepage', { Accounts });
+    res.render('homepage', { accounts });
   } catch (err) {
     res.status(500).json(err);
   }

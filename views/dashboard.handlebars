@@ -16,7 +16,7 @@
                   class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Matches</a>
                 <a href="/profileUpdate"
                   class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Update
-                  Profile</a>
+                  profile</a>
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
                 </svg>
               </button>
 
-              <!-- Profile dropdown -->
+              <!-- profile dropdown -->
               <div class="relative ml-3">
                 <div>
                   <button type="button"
@@ -66,7 +66,7 @@
                   </div>
                   <!-- Active: "bg-gray-100", Not Active: "" -->
                   <a href="/profileUpdate" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                    id="user-menu-item-0">Your Profile</a>
+                    id="user-menu-item-0">Your profile</a>
                   <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                     id="user-menu-item-2">Sign out</a>
                 </div>
@@ -110,7 +110,7 @@
             class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Matches</a>
           <a href="/profileUpdate"
             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Update
-            Profile</a>
+            profile</a>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
           <div class="flex items-center px-5">
@@ -137,7 +137,7 @@
           {{!-- <div class="mt-3 space-y-1 px-2">
             <a href="/profileUpdate" id="profile-update"
               class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your
-              Profile</a>
+              profile</a>
             <a href="/profileUpdate"
               class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
             <a href="/existingAccount/logout"
@@ -174,7 +174,7 @@
               src="https://images.unsplash.com/photo-1694309984301-60e69e095ae7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3086&q=80"
               alt="a woman laying on the ground next to flowers">
           </div>
-          <!-- <h1 class=" text-3xl font-bold tracking-tight text-gray-900 py-1 ">Profile</h1> -->
+          <!-- <h1 class=" text-3xl font-bold tracking-tight text-gray-900 py-1 ">profile</h1> -->
 
           <!-- Content goes here -->
        <div class="px-8">
@@ -193,24 +193,24 @@
         }
     </style>
             <div class="px-8"></div>
-        {{#each Profiles as |Profile|}}
+        {{#each profiles as |profile|}}
         <div class="profile" id="profile{{index}}">
-            <p>Age: {{Profile.age}}</p>
-            <p>First Name: {{Profile.first_name}}</p>
-            <p>Last Name: {{Profile.last_name}}</p>
-            <p>Pronouns: {{Profile.pronouns}}</p>
-            <p>Location: {{Profile.location}}</p>
-            <p>Green Flag: {{Profile.green_flag}}</p>
-            <p>Yellow Flag: {{Profile.yellow_flag}}</p>
-            <p>Red Flag: {{Profile.red_flag}}</p>
+            <p>Age: {{profile.age}}</p>
+            <p>First Name: {{profile.first_name}}</p>
+            <p>Last Name: {{profile.last_name}}</p>
+            <p>Pronouns: {{profile.pronouns}}</p>
+            <p>Location: {{profile.location}}</p>
+            <p>Green Flag: {{profile.green_flag}}</p>
+            <p>Yellow Flag: {{profile.yellow_flag}}</p>
+            <p>Red Flag: {{profile.red_flag}}</p>
         </div>
         {{/each}}
     </div>
         <script>
-        //let currentProfileIndex = 0;
+        //let currentprofileIndex = 0;
        // const profiles = document.querySelectorAll('.profile');
-       // const nextProfileButton = document.getElementById('nextProfile');
-       // function displayProfile(index) {
+       // const nextprofileButton = document.getElementById('nextprofile');
+       // function displayprofile(index) {
          //   profiles.forEach((profile, i) => {
                 if (i === index) {
                     profile.style.display = 'block';
@@ -219,15 +219,15 @@
                 }
             });
         }
-        nextProfileButton.addEventListener('click', () => {
-            currentProfileIndex++;
-            if (currentProfileIndex >= profiles.length) {
-                currentProfileIndex = 0;
+        nextprofileButton.addEventListener('click', () => {
+            currentprofileIndex++;
+            if (currentprofileIndex >= profiles.length) {
+                currentprofileIndex = 0;
             }
-            displayProfile(currentProfileIndex);
+            displayprofile(currentprofileIndex);
         });
         // Display the first profile initially
-        displayProfile(currentProfileIndex);
+        displayprofile(currentprofileIndex);
     </script> --}}
      
 
@@ -281,10 +281,10 @@
     </header>
     {{!-- <script>
       {{!--// document.getElementById('like-button').addEventListener('click', function () {
-        //window.location.href = '/likes/:ProfileId';
+        //window.location.href = '/likes/:profileId';
       });
     //  document.getElementById('dislike-button').addEventListener('click', function () {
-      //  window.location.href = '/likes/dislikes/:ProfileId';
+      //  window.location.href = '/likes/dislikes/:profileId';
       }); --}}
     </script> --}}
 </body>

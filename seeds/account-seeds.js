@@ -1,5 +1,5 @@
 // 🔥🔥🔥Imports🔥🔥🔥
-const { Account } = require('../models');
+const { account } = require('../models');
 
 // 🔥🔥🔥Seed Data🔥🔥🔥
 const accountData = [
@@ -175,7 +175,7 @@ const accountData = [
 ];
 
 //🔥🔥🔥Seed Function🔥🔥🔥
-const seedAccounts = () => Account.bulkCreate(accountData);
+const seedaccounts = () => account.bulkCreate(accountData);
 
 // 🔥🔥🔥Export🔥🔥🔥
-module.exports = seedAccounts;
+module.exports = seedaccounts;

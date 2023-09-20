@@ -2,8 +2,8 @@
 
 module.exports = (req, res, next) => {
     if (req.isAuthenticated()) {
-        if (req.session && req.session.Account_id) {
-            req.Account = { id: req.session.Account_id };
+        if (req.session && req.session.account_id) {
+            req.account = { id: req.session.account_id };
         }
         return next();
     }
