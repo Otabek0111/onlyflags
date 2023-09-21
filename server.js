@@ -44,7 +44,7 @@ app.use(routes);
 
 (async () => {
   try {
-    await sequelize.sync({ force: true }); // Set force to true to drop and recreate the table
+    await sequelize.sync({ force: false }); // Set force to true to drop and recreate the table
     console.log('like table synchronized with the database.');
   } catch (error) {
     console.error('Error synchronizing like table:', error);
