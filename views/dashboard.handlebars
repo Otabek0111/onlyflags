@@ -10,13 +10,13 @@
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="/dashboard" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                <a href="/dashboard/:id" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                   aria-current="page">Dashboard</a>
                 <a href="/matches"
                   class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Matches</a>
                 <a href="/profileUpdate"
                   class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Update
-                  profile</a>
+                  Profile</a>
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">Open user menu</span>
                     <img class="h-8 w-8 rounded-full"
-                      src=" https://images.unsplash.com/photo-1689044739553-f799a3b4ff53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMDd8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=900&q=60"
+                      src="{{profile.image}}"
                       alt="">
                   </button>
                 </div>
@@ -101,27 +101,28 @@
       </div>
 
       <!-- Mobile menu, show/hide based on menu state. -->
+
       <div class="md:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <a href="/dashboard" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+          <a href="/dashboard/random" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
             aria-current="page">Dashboard</a>
           <a href="/matches" id="matches-link"
             class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Matches</a>
           <a href="/profileUpdate"
             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Update
-            profile</a>
+            Profile</a>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
           <div class="flex items-center px-5">
             <div class="flex-shrink-0">
               <img class="h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1689044739553-f799a3b4ff53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMDd8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=900&q=60"
+                src="{{profile.image}}"
                 alt="">
             </div>
             <div class="ml-3">
-              <div class="text-base font-medium leading-none text-white">User</div>
-              <div class="text-sm font-medium leading-none text-gray-400">User@example.com</div>
+              <div class="text-base font-medium leading-none text-white">My Profile</div>
+              <div class="text-sm font-medium leading-none text-gray-400">{{account.email}}</div>
             </div>
             <button type="button"
               class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -170,72 +171,18 @@
         <div
           class="flex flex-wrap justify-center bg-wheat-100 max-w-4xl px-4 py-6 sm:px-6 lg:px-8 shadow-2xl rounded-lg">
           <div class="items-center">
-            <img class="max-w-sm rounded-xl shadow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1694309984301-60e69e095ae7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3086&q=80"
-              alt="a woman laying on the ground next to flowers">
+            <img src="{{profileData.image}}"class="max-w-sm rounded-xl shadow hover:shadow-lg">{{profileData.image}}
           </div>
-          <!-- <h1 class=" text-3xl font-bold tracking-tight text-gray-900 py-1 ">profile</h1> -->
 
-          <!-- Content goes here -->
-       <div class="px-8">
-               <p>First Name: Ellie</p>
-               <p>Last Name: Smith</p>
-               <p>Age: 21</p>
-               <p>Gender: Female</p>
-               <p>Pronouns: she/her</p>
-               <p>Location: Manhattan</p>
-               <p>Green Flag: I have an extensive collection of films from various genres, and I love nothing more than cozying up for a movie night, complete with popcorn and in-depth discussions about the plot, characters, and cinematic techniques.</p>
-               <p>Yellow Flag: It is important that people understand the deeper symbolism in films. If you cannot appreciate the intricacies of movie's subtext, we probably won't have much to talk about.</p>
-               <p>Red Flag: I expect my partner to watch every movie I recommend and be available for lengthy discussions about them. If you can't keep up with my movie-watching pace, it won't work out.</p> --}}
-            {{!-- <style> --}}
-        {{!-- .profile {
-            display: none;
-        }
-    </style>
-            <div class="px-8"></div>
-        {{#each profiles as |profile|}}
-        <div class="profile" id="profile{{index}}">
-            <p>Age: {{profile.age}}</p>
-            <p>First Name: {{profile.first_name}}</p>
-            <p>Last Name: {{profile.last_name}}</p>
-            <p>Pronouns: {{profile.pronouns}}</p>
-            <p>Location: {{profile.location}}</p>
-            <p>Green Flag: {{profile.green_flag}}</p>
-            <p>Yellow Flag: {{profile.yellow_flag}}</p>
-            <p>Red Flag: {{profile.red_flag}}</p>
+          <div class="px-8"></div>
+          <section class="flex-row justify-center">
+            {{>profile-details}}
+          </section>
         </div>
-        {{/each}}
-    </div>
-        <script>
-        //let currentprofileIndex = 0;
-       // const profiles = document.querySelectorAll('.profile');
-       // const nextprofileButton = document.getElementById('nextprofile');
-       // function displayprofile(index) {
-         //   profiles.forEach((profile, i) => {
-                if (i === index) {
-                    profile.style.display = 'block';
-                } else {
-                    profile.style.display = 'none';
-                }
-            });
-        }
-        nextprofileButton.addEventListener('click', () => {
-            currentprofileIndex++;
-            if (currentprofileIndex >= profiles.length) {
-                currentprofileIndex = 0;
-            }
-            displayprofile(currentprofileIndex);
-        });
-        // Display the first profile initially
-        displayprofile(currentprofileIndex);
-    </script> --}}
-     
 
-        </div>
-        <!-- Center-right button -->
 
         <div>
-          <button id="like-button"
+          <button action="/api/likes/:profileId" method="POST" id="like-button" onclick="/api/likes/:profileId"
             class="relative flex items-center justify-center top- bg-green-500 text-white px-20 py-16 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
             <div class="absolute inset-0 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -254,7 +201,7 @@
 
 
     <div class="sm:flex-row lg:hidden justify-center pt-96 mt-20">
-      <button
+      <button action="/api/likes/dislikes/:profileId" method="POST" onclick="/api/likes/dislikes/:profileId"
         class=" relative flex-row items-center justify-center bg-red-500 text-white px-10 py-10 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 mb-2 sm:mb-0 sm:mr-2">
         <div class="absolute inset-0 flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -279,14 +226,17 @@
 
 
     </header>
-    {{!-- <script>
-      {{!--// document.getElementById('like-button').addEventListener('click', function () {
+    {{!--
+    <script>
+      {
+        {
+          !--// document.getElementById('like-button').addEventListener('click', function () {
         //window.location.href = '/likes/:profileId';
       });
-    //  document.getElementById('dislike-button').addEventListener('click', function () {
-      //  window.location.href = '/likes/dislikes/:profileId';
+        //  document.getElementById('dislike-button').addEventListener('click', function () {
+        //  window.location.href = '/likes/dislikes/:profileId';
       }); --}}
-    </script> --}}
+    </script>
 </body>
 
 </body>
