@@ -73,20 +73,6 @@ const profileData = [
         image: 'https://res.cloudinary.com/dxwgp0b41/image/upload/v1694456156/Portraits/Male/taylor-8Vt2haq8NSQ-unsplash_wpy6df.jpg',
     },
     {
-        id: 5,
-        accountId: 5,
-        first_name: 'Sam',
-        last_name: 'Brown',
-        age: 25,
-        gender: 'male',
-        pronouns: 'he/him',
-        location: 'Brooklyn',
-        green_flag: "I enjoy surprising you with spontaneous gestures of love and affection, keeping the romance alive in our relationship.",
-        yellow_flag: "I, however, do not like being surprised.",
-        red_flag: "My preferred method of conveying affection is spontaneous mariachi band performances",
-        image: 'https://res.cloudinary.com/dxwgp0b41/image/upload/v1694456156/Portraits/Male/taylor-8Vt2haq8NSQ-unsplash_wpy6df.jpg',
-    },
-    {
         id: 6,
         accountId: 6,
         first_name: 'Jackson',
@@ -439,19 +425,20 @@ const profileData = [
 ]
 
 //🔥🔥🔥Seed Function🔥🔥🔥
-const seedprofiles = async () => {
-    try {
-      // Use bulkCreate to insert the profile data into the 'profile' table
-      const createdprofiles = await profile.bulkCreate(profileData);
-      console.log('profiles seeded successfully:', createdprofiles);
-    } catch (error) {
-      console.error('Error seeding profiles:', error);
-    }
-  };
+// const seedprofiles = async () => {
+//     try {
+//       // Use bulkCreate to insert the profile data into the 'profile' table
+//       const createdprofiles = await profile.bulkCreate(profileData);
+//       console.log('profiles seeded successfully:', createdprofiles);
+//     } catch (error) {
+//       console.error('Error seeding profiles:', error);
+//     }
+//   };
   
-  // Call the seedprofiles function to seed the data
+//   // Call the seedprofiles function to seed the data
 
-seedprofiles();
+// //seedprofiles();
+const seedprofiles = () => profile.bulkCreate(profileData);
 
 // 🔥🔥🔥Export🔥🔥🔥
 module.exports = seedprofiles;

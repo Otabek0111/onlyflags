@@ -25,7 +25,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
         );
 
         //redirect to profile page after editing
-        res.redirect('/dashboard')
+        res.redirect('/dashboard/random')
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

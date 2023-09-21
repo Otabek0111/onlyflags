@@ -33,6 +33,7 @@ router.post('/', async (req, res) => {
             green_flag,
             yellow_flag,
             red_flag,
+            image,
             // disliked_by_user_ids,
         } = req.body;
 
@@ -49,6 +50,7 @@ router.post('/', async (req, res) => {
             green_flag,
             yellow_flag,
             red_flag,
+            image,
             // disliked_by_user_ids,
         });
         
@@ -58,7 +60,7 @@ router.post('/', async (req, res) => {
         // }
 
         //redirect to account's profile page (or another page, can change later)
-        res.redirect('/dashboard');
+        res.redirect('/dashboard/random');
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
