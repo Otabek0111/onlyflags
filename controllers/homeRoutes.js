@@ -45,6 +45,7 @@ router.get('/dashboard/random', async (req, res) => {
       try {
         // Retrieve 5 most recent profiles based on some 'createdAt' or 'updatedAt' column
         const recentProfiles = await profile.findAll({
+          limit: 5, 
           order: [['createdAt', 'ASC']], // or use 'updatedAt' or any column that you use for timekeeping
         });
     
