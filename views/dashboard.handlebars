@@ -1,3 +1,4 @@
+
 <body>
   <div class="h-screen">
     <nav class="bg-gray-700">
@@ -157,7 +158,7 @@
     <body>
       <header class="bg-white shadow mt-0 pt-20 pb-20 flex justify-center">
         <div>
-          <button id="dislike-button"
+          <button id="dislike-button"  action="/api/likes/dislikes/:profileId" method="POST"  onclick="location.reload();"
             class=" relative flex items-center justify-center top- bg-red-500 text-white px-20 py-16 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
             <div class="absolute inset-0 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -197,11 +198,11 @@
        
 
   </div>
-  <div class="flex flex-wrap justify-center">
+  {{!-- <div class="flex flex-wrap justify-center"> --}}
 
 
 
-
+{{!-- 
     <div class="sm:flex-row lg:hidden justify-center pt-96 mt-20">
       <button action="/api/likes/dislikes/:profileId" method="POST"  onclick="location.reload();"
         class=" relative flex-row items-center justify-center bg-red-500 text-white px-10 py-10 shadow-2xl text-2xl rounded-xl hover:shadow-lg hover:shadow-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 mb-2 sm:mb-0 sm:mr-2">
@@ -225,7 +226,7 @@
         </div>
       </button>
     </div>
-
+ --}}
 
     </header>
     {{!--
