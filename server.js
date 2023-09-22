@@ -8,6 +8,7 @@ const sequelize = require('./config/connection');
 const routes = require('./controllers');
 const path = require('path'); // For Node.js
 const session = require('express-session'); // Express.js
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // const account = require('./models/account');
 // const profile = require('./models/profile');
@@ -16,14 +17,22 @@ const session = require('express-session'); // Express.js
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Set up middleware with a secret key
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
+const sess = {
+  secret: process.env.SESSION_SECRET,
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
   })
-);
+};
+
+// Set up middleware with a secret key
+app.use(session(sess));
+
+// Parse JSON & URL-encoded request bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,9 +40,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
-// Parse JSON & URL-encoded request bodies
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // Initialize passport.js
 app.use(passport.initialize());

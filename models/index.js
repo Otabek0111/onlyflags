@@ -1,5 +1,6 @@
 const profile = require('./profile');
 const account = require('./account');
+const like = require('./like');
 
 //establishes relationships
 account.hasOne(profile, {
@@ -14,4 +15,5 @@ profile.belongsTo(account, {
 module.exports = {
   profile, 
   account,
+  like, 
 };

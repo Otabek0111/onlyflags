@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { Account } = require('../models');
+const { account } = require('../models');
 
 passport.use(
   new LocalStrategy(
@@ -10,7 +10,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const account = await Account.findOne({ where: { email } });
+        const account = await account.findOne({ where: { email } });
 
         if (!account) {
           return done(null, false, { message: 'Incorrect email' });
@@ -36,7 +36,7 @@ passport.serializeUser((account, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const account = await Account.findByPk(id);
+    const account = await account.findByPk(id);
     done(null, account);
   } catch (err) {
     done(err);
